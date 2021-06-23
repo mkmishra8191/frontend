@@ -1,0 +1,112 @@
+<div class="flex-row  fixed-top">
+
+  <div class="float-right">
+  
+  
+  
+    
+  
+  <button type="button" (click)="login()"class="btn btn-secondary">Login</button>
+  </div>
+  </div>
+
+
+<div class="d-flex align-items-center justify-content-center " style="margin-top: 100px">
+
+    <div class="container ">
+        
+        
+     
+    
+     
+   
+    <div *ngIf="employees">
+      <div class="row justify-content-md-center" style="margin-top: 50px">
+        <div class="col-md-8">
+    
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" colspan="4">Employees Information</th>
+            
+        </tr>
+    </thead>
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+    
+        <th scope="col">Name</th>
+        <th scope="col">Skills</th>
+        <th scope="col">Designation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of empInfo ">
+        <td (click)="getLeaves(employee.id)" >{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.skills}}</td>
+        <td>{{employee.designation}}</td>
+      </tr>
+      
+      
+      
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    
+     <div *ngIf="employeeLeaves">
+      
+      <div class="row justify-content-md-center " style="margin-top: 50px">
+             <div class="col-md-8">
+     
+     <table class="table table-bordered">
+         <thead>
+             <tr>
+                 <th class="text-center" colspan="4">Requests</th>
+                 
+             </tr>
+         </thead>
+         <thead>
+           <tr>
+             
+             <th class="text-center"scope="col">Id</th>
+             <th class="text-center" scope="col">From</th>
+             <th class="text-center"  scope="col">To</th>
+             <th class="text-center"  scope="col" >Action</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let leave of leavess">
+             
+             <td class="text-center"  >{{leave.id}}</td>
+             <td class="text-center" >{{leave.fromDate}}</td>
+             <td class="text-center" >{{leave.toDate}}</td>
+            <td class="text-center" ><select class="form-select " #mySelect
+                (change)='onOptionsSelected(mySelect)'>
+                <option  selected>{{leave.reportingManagerStatus}}</option>
+    
+             <option [value]="leave.id">Approve</option>
+            <option [value]="leave.id">Reject</option>
+                  
+                </select></td>
+
+    
+            </tr>
+           
+           
+         </tbody>
+       </table>
+         </div>
+     </div>
+     </div>
+     
+    </div>
+    </div>
+    
+      
+        
+        
+     
+     

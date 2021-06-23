@@ -1,0 +1,13 @@
+
+
+<div class="d-flex align-items-center justify-content-center" style="height: 600px">
+<form  #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
+    <div class="form-group">
+       
+       <input type="email"  ngModel={{credentials?.userName}} name="userName" class="form-control mb-2" id="userName" placeholder="Email" required>
+       <input type="password"  ngModel={{credentials?.password}} name="password" class="form-control" id="password" placeholder="Password" required>
+
+    </div>
+    <button hidden=true type="submit"></button>
+</form>
+</div>

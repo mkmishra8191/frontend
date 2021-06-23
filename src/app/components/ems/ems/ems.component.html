@@ -1,0 +1,291 @@
+<div class="flex-row  fixed-top">
+
+<div class="float-right">
+
+
+
+  
+
+<button type="button" (click)="login()"class="btn btn-secondary">Login</button>
+</div>
+</div>
+
+<div class="d-flex align-items-center justify-content-center " style="margin-top: 100px">
+
+<div class="container ">
+
+    
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+<div class="btn-toolbar" role="toolbar" >
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" (click)="getInfo()" [ngClass]="{'active': department === true}" class="btn btn-secondary">Departments</button>
+    <button type="button" (click)="getAllEmployees()" [ngClass]="{'active': employees === true}" class="btn btn-secondary">Employees</button>
+    <button type="button" (click)="getLeaves()" [ngClass]="{'active': leaves === true}"  class="btn btn-secondary">Leaves</button>
+    <button type="button"(click)="getExitM()" [ngClass]="{'active': exitsB === true}"  class="btn btn-secondary">Exit Management</button>
+    <button type="button" (click)="getNewJoinee()" [ngClass]="{'active': newJoinee === true}" class="btn btn-secondary">New Joinees</button>
+    <button type="button" (click)="getExit()" [ngClass]="{'active': exit === true}" class="btn btn-secondary">Leaving Next Month</button>
+  </div>
+</div>
+</div>
+</div>
+
+ 
+<div *ngIf="department">
+  
+ <div class="row justify-content-md-center " style="margin-top: 50px">
+        <div class="col-md-8">
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" colspan="3">Departments Information</th>
+            
+        </tr>
+    </thead>
+    <thead>
+      <tr>
+        
+        <th scope="col">Name</th>
+        <th scope="col">Strength</th>
+        <th scope="col">Percentages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of informations">
+        
+        <td>{{department?.name}}</td>
+        <td>{{department?.count}}</td>
+        <td  (click)="getEmployees(department.id)">{{(department?.count/totalStrength)*100 +" %"}}</td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+    </div>
+</div>
+</div>
+<div *ngIf="employees">
+  <div class="row justify-content-md-center" style="margin-top: 50px">
+    <div class="col-md-8">
+
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <th class="text-center" colspan="4">Employees Information</th>
+        
+    </tr>
+</thead>
+<thead>
+  <tr>
+    <th  scope="col">Id</th>
+
+    <th scope="col">Name</th>
+    <th scope="col">Skills</th>
+    <th scope="col">Designation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let employee of empInfo ">
+    <td >{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    <td (click)="getSkillEmployees(employee.skills)">{{employee.skills}}</td>
+    <td>{{employee.designation}}</td>
+  </tr>
+  
+  
+  
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div *ngIf="newJoinee">
+  <div class="row justify-content-md-center" style="margin-top: 50px">
+    <div class="col-md-8">
+
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <th class="text-center" colspan="4">New Joinees</th>
+        
+    </tr>
+</thead>
+<thead>
+  <tr>
+    <th  scope="col">Id</th>
+
+    <th scope="col">Name</th>
+    
+    <th scope="col">Joining Date</th>
+    <th scope="col">Appraisal Date</th>
+
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let employee of newJoinees">
+    <td >{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    
+    <td>{{employee.joiningDate}}</td> 
+    <td>{{employee.appraisalDate}}</td> 
+
+  </tr>
+  
+  
+  
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div *ngIf="exit">
+  <div class="row justify-content-md-center" style="margin-top: 50px">
+    <div class="col-md-8">
+
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <th class="text-center" colspan="3">Employees Leaving Next Month</th>
+        
+    </tr>
+</thead>
+<thead>
+  <tr>
+    <th  scope="col">Id</th>
+
+    <th scope="col">Name</th>
+    
+    <th scope="col">Exit Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let employee of exits">
+    <td >{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    
+    <td>{{employee.joiningDate}}</td> 
+  </tr>
+  
+  
+  
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div *ngIf="exitsB">
+  <div class="row justify-content-md-center" style="margin-top: 50px">
+    <div class="col-md-8">
+
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <th class="text-center" colspan="4">Exit Requests</th>
+        
+    </tr>
+</thead>
+<thead>
+  <tr>
+    <th  scope="col">Emp. Id</th>
+
+    <th  scope="col">Stage</th>
+
+    <th scope="col">Current Status</th>
+    
+    <th scope="col">Remarks</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let employee of exitM">
+    <td>{{employee.id}}</td> 
+
+    <td >{{employee.status}}</td>
+    <td>{{employee.state}}</td>
+    
+    <td>{{employee.coment}}</td> 
+  </tr>
+  
+  
+  
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+ <div *ngIf="leaves">
+  
+  <div class="row justify-content-md-center " style="margin-top: 50px">
+         <div class="col-md-8">
+ 
+ <table class="table table-bordered">
+     <thead>
+         <tr>
+             <th class="text-center" colspan="3">Leaves Information</th>
+             
+         </tr>
+     </thead>
+     <thead>
+       <tr>
+         
+         <th scope="col">Id</th>
+         <th scope="col">Leaves Taken</th>
+         <th scope="col">Leaves Remaining</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let leave of leavess">
+         
+         <td [ngClass]="{'bg-success': leave.pl+leave.sl+leave.cl+leave.takenpl+leave.takensl+leave.takencl ==15,'bg-info': leave.pl+leave.sl+leave.cl+leave.takenpl+leave.takensl+leave.takencl != 15}" (click)="getEmployeeLeave(leave)">{{leave.empInfo.id}}</td>
+         <td>CL-{{leave.takencl}}, PL-{{leave.takenpl}}, SL-{{leave.takensl}}</td>
+         <td>CL-{{leave.cl}}, PL-{{leave.pl}}, SL-{{leave.sl}}</td>
+
+        </tr>
+       
+       
+     </tbody>
+   </table>
+     </div>
+ </div>
+ </div>
+ <div *ngIf="employeeLeaves">
+  
+  <div class="row justify-content-md-center " style="margin-top: 50px">
+         <div class="col-md-8">
+ 
+ <table class="table table-bordered">
+     <thead>
+         <tr>
+             <th class="text-center" colspan="3">{{eleave.empInfo.name}}</th>
+             
+         </tr>
+     </thead>
+     
+     <tbody>
+      <tr>
+         
+        <td class="text-center" scope="col" colspan="3">
+         Employee Id - {{eleave.empInfo.id}}<br>
+        Skills-  {{eleave.empInfo.skills}}<br>
+         Date of Joining- {{eleave.empInfo.designation}}
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center" scope="col" colspan="3">CL-{{eleave.cl}}/5<br>PL-{{eleave.pl}}/5<br>SL-{{eleave.sl}}/5</td>
+      </tr>
+       
+     </tbody>
+   </table>
+     </div>
+ </div>
+ </div>
+
+</div>
+</div>
+
+  
+    
+    
+ 
+ 
